@@ -31,6 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 INSTALLED_APPS = [
     # project apps
     'django_project',
+    'catchup',
 
     # vendor apps (project specific)
 
@@ -85,12 +86,12 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        # 'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql',
         # 'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        # 'NAME': os.environ.get('DB_NAME', ''),
+        'NAME': os.environ.get('DB_NAME', ''),
         'USER': os.environ.get('DB_USER', ''),
         'PASSWORD': os.environ.get('DB_PASSWORD', ''),
         'HOST': os.environ.get('DB_HOST', 'localhost'),
