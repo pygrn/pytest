@@ -1,1 +1,46 @@
+# Django project
 
+Install base dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+## Local development
+In the project folder "django_project" copy settings-devel-example.py to
+settings-devel.py and customise as needed
+
+## Production
+
+Generate secret key to use in production
+
+```
+python manage.py generatesecretkey
+```
+
+
+## Project specific configuration
+
+
+## Standard configuration
+
+DEBUG = False
+
+
+## Common django commands
+
+```
+python manage.py makemessages -l {{ 2 letter language code}}
+python manage.py compilemessages
+```
+
+## Common vendor apps
+
+django-cors-headers
+https://github.com/ottoyiu/django-cors-headers
+
+django-oauth-toolkit
+https://github.com/evonove/django-oauth-toolkit
+
+django-rest-framework
+https://github.com/encode/django-rest-framework
