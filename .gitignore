@@ -9,3 +9,12 @@ django_project/settings-local.py
 django_project/devel.env
 django_project/local.env
 /app.env
+
+.idea/.gitignore
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/pytest.iml
+.idea/vcs.xml
+
+.coverage

@@ -1,7 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
 User = get_user_model()
 
@@ -34,17 +37,34 @@ class Attendee(models.Model):
 class Event(models.Model):
     group = models.ForeignKey(Group, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
-    event_date = models.DateField(null=True, blank=True)
-    event_time = models.TimeField(null=True, blank=True)
+    event_datetime = models.DateTimeField(null=True, blank=True)
     place = models.CharField(max_length=100, null=False, blank=True)
     max_attendees = models.IntegerField(default=0, help_text='0 = unlimited')
     attendees = models.ManyToManyField(User, through=Attendee)
 
+    def save(self, *args, **kwargs):
+        validate = MinValueValidator(0)
+        validate(self.max_attendees)
+
+        if self.pk:
+            # existing object
+            # TODO: allow modification of future event_date/time only
+            pass
+        else:
+            # new object
+            # raise ValidationError if creating an event_date/time in the past
+            # now = timezone.now()
+            # if self.event_datetime < now:
+            #     raise ValidationError('Cannot create events in the past')
+            pass
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return '{group}: {name} @ {event_date}'.format(
+        return '{group}: {name} @ {event_datetime}'.format(
             group=self.group,
             name=self.name,
-            event_date=self.event_date
+            event_datetime=self.event_datetime
         )
 
 

@@ -1,0 +1,8 @@
+[run]
+include = catchup/*
+omit = *migrations*, *tests*, .venv*, manage.py, settings-test.py
+plugins =
+    django_coverage_plugin
+
+[report]
+precision = 2
