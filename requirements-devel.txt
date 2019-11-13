@@ -1,0 +1,10 @@
+coverage
+django-coverage-plugin
+factory-boy
+freezegun
+hypothesis
+pytest
+pytest-cov
+pytest-django
+pytest-sugar
+pytest-timeout
