@@ -1,7 +1,7 @@
 import random
 
-from django.utils import timezone
 import factory
+from django.utils import timezone
 from factory import DjangoModelFactory, Faker
 
 from catchup.models import Attendee, Event, EventPhoto, Group, User
@@ -57,6 +57,8 @@ class AttendeeFactory(DjangoModelFactory):
 
 
 class EventPhotoFactory(DjangoModelFactory):
+    event = factory.SubFactory(EventFactory)
+
     class Meta:
         model = EventPhoto
 

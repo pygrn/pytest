@@ -8,3 +8,4 @@ pytest-cov
 pytest-django
 pytest-sugar
 pytest-timeout
+requests

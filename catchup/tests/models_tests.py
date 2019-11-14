@@ -1,3 +1,4 @@
+import os
 from datetime import timedelta
 
 import pytest
@@ -6,14 +7,13 @@ from django.utils import timezone
 from faker import Faker
 from freezegun import freeze_time
 
-from catchup.models import Event
-from catchup.tests.factories import EventFactory
+from catchup.models import Event, EventPhoto
+from catchup.tests.factories import EventFactory, EventPhotoFactory
+from django_project.settings import BASE_DIR
 
 pytestmark = pytest.mark.django_db()
 fake = Faker()
 
-
-# TODO: hypothesis
 
 @pytest.mark.xfail
 def test_event_datetime():
@@ -29,6 +29,7 @@ def test_event_datetime():
         new_event.save()
 
 
+@pytest.mark.smoketest
 def test_event_limits():
     new_event: Event = EventFactory.create()
     new_event.max_attendees = -2
@@ -37,5 +38,24 @@ def test_event_limits():
         new_event.save()
 
 
-def test_event_model(attendee_various):
+def test_event_model(event_various):
+    assert event_various.name is not None
+
+
+def test_attendee_model(attendee_various):
     assert attendee_various.event is not None
+
+
+@pytest.mark.parametrize("image, should_save",
+                         [
+                             ["test_fixtures/valid_image.jpg", True],
+                             pytest.param("test_fixtures/invalid_image.jpg", False, marks=pytest.mark.xfail),
+                         ])
+def test_event_photo(image, should_save):
+    new_event_photo: EventPhoto = EventPhotoFactory.create()
+    new_event_photo.image = os.path.join(BASE_DIR, image)
+    if should_save:
+        new_event_photo.save()
+    else:
+        with pytest.raises(ValidationError):
+            new_event_photo.save()

@@ -18,3 +18,5 @@ django_project/local.env
 .idea/vcs.xml
 
 .coverage
+
+.hypothesis
