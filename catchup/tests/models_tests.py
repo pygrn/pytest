@@ -15,8 +15,6 @@ pytestmark = pytest.mark.django_db()
 fake = Faker()
 
 
-# TODO: hypothesis
-
 @pytest.mark.xfail
 def test_event_datetime():
     past_datetime = fake.date_time_between(start_date="-30y", end_date="now", tzinfo=timezone.utc)
@@ -40,7 +38,11 @@ def test_event_limits():
         new_event.save()
 
 
-def test_event_model(attendee_various):
+def test_event_model(event_various):
+    assert event_various.name is not None
+
+
+def test_attendee_model(attendee_various):
     assert attendee_various.event is not None
 
 
