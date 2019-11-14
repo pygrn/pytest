@@ -17,8 +17,7 @@ Attendee
 Event
 - Group
 - name
-- date
-- time
+- datetime
 - place
 - max_attendees
 - attendees (Attendee list)
