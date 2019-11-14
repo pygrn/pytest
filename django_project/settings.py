@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     # vendor apps
     # 'corsheaders',
     # 'oauth2_provider',
-    # 'rest_framework',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -251,33 +251,33 @@ SERVER_EMAIL = os.getenv('SERVER_EMAIL', '')
 # }
 
 # rest-framework
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         # 'rest_framework.authentication.BasicAuthentication',
-#         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-#         'rest_framework.authentication.SessionAuthentication',
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         # Require a valid user
-#         'rest_framework.permissions.IsAuthenticated',
-#         # Warning: Staff (admin) user required:
-#         # 'rest_framework.permissions.IsAdminUser',
-#         # Warning: GET is not protected, open to authenticated users
-#         # 'rest_framework.permissions.DjangoModelPermissions',
-#         # default setting:
-#         'rest_framework.permissions.AllowAny',
-#     ],
-#     # 'DEFAULT_RENDERER_CLASSES': (
-#     #     'rest_framework.renderers.JSONRenderer',
-#     #     'rest_framework.renderers.BrowsableAPIRenderer',
-#     # ),
-#     # 'DEFAULT_PARSER_CLASSES': (
-#     #     'rest_framework.parsers.JSONParser',
-#     #     'rest_framework.parsers.FormParser',
-#     #     'rest_framework.parsers.MultiPartParser'
-#     # ),
-#     'PAGE_SIZE': 100
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        # Require a valid user
+        'rest_framework.permissions.IsAuthenticated',
+        # Warning: Staff (admin) user required:
+        # 'rest_framework.permissions.IsAdminUser',
+        # Warning: GET is not protected, open to authenticated users
+        # 'rest_framework.permissions.DjangoModelPermissions',
+        # default setting:
+        # 'rest_framework.permissions.AllowAny',
+    ],
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    #     'rest_framework.renderers.BrowsableAPIRenderer',
+    # ),
+    # 'DEFAULT_PARSER_CLASSES': (
+    #     'rest_framework.parsers.JSONParser',
+    #     'rest_framework.parsers.FormParser',
+    #     'rest_framework.parsers.MultiPartParser'
+    # ),
+    'PAGE_SIZE': 100
+}
 
 SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', 'False').lower() == 'true'
 SSLIFY_DISABLE = os.getenv('DISABLE_SSL', 'True').lower() == 'true'

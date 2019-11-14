@@ -38,4 +38,5 @@ urlpatterns = [
 
     # url(r'^is_authenticated?$', is_authenticated),
     path('admin/', admin.site.urls),
+    path('api/v1/', include('api.urls')),
 ]
