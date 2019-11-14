@@ -13,7 +13,7 @@ RUN \
   ssh-keyscan github.com >> ~/.ssh/known_hosts && \
   ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
 
-ADD ./requirements.txt /tmp/
+ADD ./requirements*.txt /tmp/
 
 # Download python requirements
 ARG EXTRA_REQUIREMENTS=devel
@@ -24,8 +24,8 @@ RUN \
   mkdir /pip; \
   pip3 download -d /pip -r /tmp/requirements.txt && \
   pip3 download -d /pip uwsgi; \
-  if [ -n "$EXTRA_REQUIREMENTS" -a -f "/docker/requirements-$EXTRA_REQUIREMENTS.txt" ]; \
-    then pip3 download -d /pip -r "/docker/requirements-$EXTRA_REQUIREMENTS.txt"; \
+  if [ -n "$EXTRA_REQUIREMENTS" -a -f "/tmp/requirements-$EXTRA_REQUIREMENTS.txt" ]; \
+    then pip3 download -d /pip -r "/tmp/requirements-$EXTRA_REQUIREMENTS.txt"; \
   fi;
 
 #
