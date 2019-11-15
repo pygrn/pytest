@@ -6,3 +6,6 @@ docker-compose exec db /app/docker/db/db_init.sh
 docker-compose exec django bash
 pytest
 ```
+
+
+[Slides](docs/PyGRN_PyTest.pdf)
