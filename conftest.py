@@ -9,6 +9,8 @@ from django_project import settings
 
 pytestmark = pytest.mark.django_db(transaction=True)
 
+collect_ignore = ["django_project/settings-test.py"]
+
 
 @pytest.fixture(scope="session", autouse=True)
 def clean_cache():
